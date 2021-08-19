@@ -1,21 +1,41 @@
+import { useState } from 'react';
+import DateInput from './components/DateInput';
+import Header from './components/Header';
+import Main from './components/Main';
+import TextInput from './components/TextInput';
+
 export default function App() {
-  console.log('Teste no console do navegador');
+  const [name, setName] = useState('Guilherme');
+  const [birthDate, setbirthDate] = useState('1999-07-29');
+
+  function handleNameChange(newName) {
+    setName(newName);
+  }
+
+  function handleBirthDateChange(birthDate) {
+    setbirthDate(birthDate);
+  }
 
   return (
-    <div>
-      <header>
-        <div className="bg-gray-100 mx-auto p-4">
-          <h1 className="text-center font-semibold text-xl">
-            Projeto base para o Módulo React I
-          </h1>
-        </div>
-      </header>
+    <>
+      <Header>React-Hello</Header>
+      <Main>
+        <TextInput
+          labelDescrition="Digite o seu nome:"
+          inputValue={name}
+          onInputChange={handleNameChange}
+        />
 
-      <main>
-        <div className="container mx-auto p-4">
-          <h2>O conteúdo fica aqui.</h2>
-        </div>
-      </main>
-    </div>
+        <DateInput
+        labelDescrition="Digite sua data de nascimento:"
+          inputValue={birthDate}
+          onInputChange={handleBirthDateChange}
+        />
+
+        <p>
+          O seu nome é {name}, com {name.length} caracteres e você tem 22 anos
+        </p>
+      </Main>
+    </>
   );
 }
