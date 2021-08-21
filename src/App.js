@@ -7,15 +7,35 @@ import TextInput from './components/TextInput';
 import { getNewId } from './services/idService';
 import Timer from './components/Timer';
 import CheckBox from './components/CheckBoxInput';
+import OnlineOffline from './components/OnlineOffline';
 
 export default function App() {
   const [name, setName] = useState('Guilherme');
   const [birthDate, setbirthDate] = useState('1999-07-29');
   const [showTimer, setshowTimer] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
     document.title = name;
   }, [name]);
+
+  useEffect(() => {
+    function toggleIsOnline() {
+      setIsOnline(true);
+    }
+
+    function toggleIsOffline() {
+      setIsOnline(false);
+    }
+
+    window.addEventListener('online', toggleIsOnline);
+    window.addEventListener('offline', toggleIsOffline);
+
+    return () => {
+      window.removeEventListener('online', toggleIsOnline);
+      window.removeEventListener('offline', toggleIsOffline);
+    };
+  }, []);
 
   function handleNameChange(newName) {
     setName(newName);
@@ -32,8 +52,10 @@ export default function App() {
     <>
       <Header>React-Hello</Header>
       <Main>
+        <OnlineOffline isOnline={isOnline} />
+
         {showTimer && (
-          <div className="text-right mt-1">
+          <div className="text-right mt-3">
             <Timer />
           </div>
         )}
