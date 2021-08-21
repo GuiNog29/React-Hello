@@ -1,21 +1,89 @@
+import { useEffect, useState } from 'react';
+import DateInput from './components/DateInput';
+import Header from './components/Header';
+import { getAgeFrom } from './helpers/dateHelpers';
+import Main from './components/Main';
+import TextInput from './components/TextInput';
+import { getNewId } from './services/idService';
+import Timer from './components/Timer';
+import CheckBox from './components/CheckBoxInput';
+import OnlineOffline from './components/OnlineOffline';
+
 export default function App() {
-  console.log('Teste no console do navegador');
+  const [name, setName] = useState('Guilherme');
+  const [birthDate, setbirthDate] = useState('1999-07-29');
+  const [showTimer, setshowTimer] = useState(false);
+  const [isOnline, setIsOnline] = useState(true);
+
+  useEffect(() => {
+    document.title = name;
+  }, [name]);
+
+  useEffect(() => {
+    function toggleIsOnline() {
+      setIsOnline(true);
+    }
+
+    function toggleIsOffline() {
+      setIsOnline(false);
+    }
+
+    window.addEventListener('online', toggleIsOnline);
+    window.addEventListener('offline', toggleIsOffline);
+
+    return () => {
+      window.removeEventListener('online', toggleIsOnline);
+      window.removeEventListener('offline', toggleIsOffline);
+    };
+  }, []);
+
+  function handleNameChange(newName) {
+    setName(newName);
+  }
+
+  function handleBirthDateChange(birthDate) {
+    setbirthDate(birthDate);
+  }
+  function toggleShowTimer() {
+    setshowTimer(currentShowTimer => !currentShowTimer);
+  }
 
   return (
-    <div>
-      <header>
-        <div className="bg-gray-100 mx-auto p-4">
-          <h1 className="text-center font-semibold text-xl">
-            Projeto base para o Módulo React I
-          </h1>
-        </div>
-      </header>
+    <>
+      <Header>React - Hello</Header>
+      <Main>
+        <OnlineOffline isOnline={isOnline} />
 
-      <main>
-        <div className="container mx-auto p-4">
-          <h2>O conteúdo fica aqui.</h2>
-        </div>
-      </main>
-    </div>
+        {showTimer && (
+          <div className="text-right mt-3">
+            <Timer />
+          </div>
+        )}
+
+        <CheckBox
+          labelDescrition="Show Timer"
+          onCheckBoxChange={toggleShowTimer}
+        />
+
+        <TextInput
+          id={getNewId}
+          labelDescrition="Type you name:"
+          inputValue={name}
+          onInputChange={handleNameChange}
+        />
+
+        <DateInput
+          id={getNewId}
+          labelDescrition="Enter your birth date:"
+          inputValue={birthDate}
+          onInputChange={handleBirthDateChange}
+        />
+
+        <p>
+          Your name is {name}, with {name.length} characters and you are{' '}
+          {getAgeFrom(birthDate)} years old
+        </p>
+      </Main>
+    </>
   );
 }
