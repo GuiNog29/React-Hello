@@ -1,6 +1,6 @@
 export default function CheckBoxInput({
-  labelDescrition = 'Descrição do CheckBox:',
-  inputValue = 'Valor padrão do input',
+  labelDescrition = 'Description of checkox:',
+  inputValue = 'Standard value of input',
   onCheckBoxChange = null,
   id = 'id_input_checkbox',
   autoFocus = false,

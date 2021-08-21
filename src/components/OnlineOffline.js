@@ -1,7 +1,7 @@
 export default function OnlineOffline({ isOnline = true }) {
   const className = isOnline ? 'bg-green-200' : 'bg-red-200';
   return (
-    <span className={`${className} p-1`}>
+    <span className={`${className} p-1 font-semibold`}>
       {isOnline ? 'Online' : 'Offline'}
     </span>
   );

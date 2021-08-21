@@ -50,7 +50,7 @@ export default function App() {
 
   return (
     <>
-      <Header>React-Hello</Header>
+      <Header>React - Hello</Header>
       <Main>
         <OnlineOffline isOnline={isOnline} />
 
@@ -61,27 +61,27 @@ export default function App() {
         )}
 
         <CheckBox
-          labelDescrition="Mostrar cronômetro"
+          labelDescrition="Show Timer"
           onCheckBoxChange={toggleShowTimer}
         />
 
         <TextInput
           id={getNewId}
-          labelDescrition="Digite o seu nome:"
+          labelDescrition="Type you name:"
           inputValue={name}
           onInputChange={handleNameChange}
         />
 
         <DateInput
           id={getNewId}
-          labelDescrition="Digite sua data de nascimento:"
+          labelDescrition="Enter your birth date:"
           inputValue={birthDate}
           onInputChange={handleBirthDateChange}
         />
 
         <p>
-          O seu nome é {name}, com {name.length} caracteres e você tem{' '}
-          {getAgeFrom(birthDate)} anos
+          Your name is {name}, with {name.length} characters and you are{' '}
+          {getAgeFrom(birthDate)} years old
         </p>
       </Main>
     </>

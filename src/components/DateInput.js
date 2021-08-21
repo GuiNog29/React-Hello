@@ -1,5 +1,5 @@
 export default function DateInput({
-  labelDescrition = 'Descrição do Label:',
+  labelDescrition = 'Description of Label:',
   inputValue = '2021-08-19',
   onInputChange = null,
   id = 'id_input_Date',
