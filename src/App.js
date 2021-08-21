@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import DateInput from './components/DateInput';
-import Header from './components/Header';
+import DateInput from './components/DateInput.jsx';
+import Header from './components/Header.jsx';
 import { getAgeFrom } from './helpers/dateHelpers';
-import Main from './components/Main';
-import TextInput from './components/TextInput';
+import Main from './components/Main.jsx';
+import TextInput from './components/TextInput.jsx';
 import { getNewId } from './services/idService';
-import Timer from './components/Timer';
-import CheckBox from './components/CheckBoxInput';
-import OnlineOffline from './components/OnlineOffline';
+import Timer from './components/Timer.jsx';
+import CheckBox from './components/CheckBoxInput.jsx';
+import OnlineOffline from './components/OnlineOffline.jsx';
 
 export default function App() {
   const [name, setName] = useState('Guilherme');
